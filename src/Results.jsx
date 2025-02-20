@@ -45,8 +45,8 @@ const ResultsPage = () => {
   const generateLayout = () => {
     const { internalDia, vesselLength, plateThickness, plateWidth, plateLength, material, ratePerKg } = inputs;
     const developedLength = Math.round((internalDia + plateThickness) * Math.PI + (plateThickness <= 35 ? plateThickness : 1.5 * plateThickness));
-    const numPlatesWidth = Math.ceil(vesselLength / plateWidth);
-    const lastPlateWidth = vesselLength - ((numPlatesWidth - 1) * plateWidth);
+    const numPlatesWidth = Math.ceil(vesselLength / (plateWidth + 2)); // Considering 2 mm gap
+    const lastPlateWidth = vesselLength - ((numPlatesWidth - 1) * (plateWidth + 2));
     const numPlatesLength = Math.ceil(developedLength / plateLength);
     const lastPlateLength = developedLength - ((numPlatesLength - 1) * plateLength);
     const density = materialDensities[material];
@@ -79,7 +79,7 @@ const ResultsPage = () => {
     ctx.scale(scale, scale);
 
     for (let i = 0; i < numPlatesWidth; i++) {
-      let yOffset = i * (plateWidth + 20 / scale);
+      let yOffset = i * (plateWidth + 2 + 20 / scale); // Adding 2 mm gap
       let currentPlateWidth = i === numPlatesWidth - 1 ? lastPlateWidth : plateWidth;
 
       // Draw plate border
@@ -91,9 +91,9 @@ const ResultsPage = () => {
       ctx.fillRect(100 / scale, yOffset + 50 / scale, developedLength, currentPlateWidth);
 
       // Draw mesh pattern in the offcut area for each plate
-      const meshSize = 10 / scale;
-      ctx.strokeStyle = "rgb(0, 0, 0)";
-      ctx.lineWidth = 0.5;
+      const meshSize = 4 / scale;
+      ctx.strokeStyle = "rgb(255, 5, 5)";
+      ctx.lineWidth = 4;
       for (let x = 100 / scale + developedLength; x < 100 / scale + plateLength; x += meshSize) {
         ctx.beginPath();
         ctx.moveTo(x, yOffset + 50 / scale);
@@ -109,7 +109,7 @@ const ResultsPage = () => {
 
       // Draw dimensions with arrows
       ctx.fillStyle = "black";
-      ctx.font = `bold ${12 / scale}px Arial`;
+      ctx.font = `bold ${12 / scale}px Montserrat`;
 
       // Width arrow and text
       ctx.beginPath();
@@ -123,7 +123,7 @@ const ResultsPage = () => {
       ctx.moveTo(plateLength / 2 + 100 / scale, yOffset - 5 / scale);
       ctx.lineTo(plateLength / 2 + 100 / scale, yOffset - 20 / scale);
       ctx.stroke();
-      ctx.fillText(`Height: ${Math.round(plateLength)} mm`, plateLength / 2 + 100 / scale, yOffset - 25 / scale);
+      ctx.fillText(`Length: ${Math.round(plateLength)} mm`, plateLength / 2 + 100 / scale, yOffset - 25 / scale);
 
       // Developed Length arrow and text
       ctx.beginPath();

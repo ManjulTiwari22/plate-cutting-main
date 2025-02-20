@@ -1,0 +1,119 @@
+/* App.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Container styling */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background-color: #b3c7ff;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.5s ease;
+}
+
+/* Form container styling */
+.form-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  min-width: 800px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+}
+
+/* Hover effect for the form container */
+.form-container:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+/* Heading styling */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #444;
+  font-weight: 600;
+}
+
+/* Label styling */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Input and select styling */
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #666;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  min-width: 450px;
+  height: 48px; /* Set a fixed height for consistency */
+  box-sizing: border-box; /* Ensure padding is included in the height */
+}
+
+
+/* Focus effect for input and select elements */
+input:focus,
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+/* Button styling */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: #0062cc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  background-color: #0056b3;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .form-container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 14px;
+  }
+}
